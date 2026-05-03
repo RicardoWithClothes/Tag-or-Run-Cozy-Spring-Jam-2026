@@ -8,6 +8,7 @@ public class PillBar : MonoBehaviour
     public Image fill;
     public float drainRate = 0.05f;
     public float fillAmount { get; set; } = 1.0f;
+    public AudioSource coinCollectSound;
 
     [Header("Post Processing")]
     public Volume nightmareVolume;
@@ -22,5 +23,6 @@ public class PillBar : MonoBehaviour
     }
     public void FillBar() {
         fillAmount = 1.0f;
+        coinCollectSound.Play();
     }
 }

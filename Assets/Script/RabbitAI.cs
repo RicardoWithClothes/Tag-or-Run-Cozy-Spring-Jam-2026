@@ -16,6 +16,9 @@ public class RabbitAI : MonoBehaviour
 
     public Light[] eyes;
 
+    [Header("Audio Settings")]
+    public AudioSource rabbitSound;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
