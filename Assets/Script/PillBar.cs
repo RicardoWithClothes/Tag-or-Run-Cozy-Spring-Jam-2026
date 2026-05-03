@@ -16,8 +16,6 @@ public class PillBar : MonoBehaviour
         fillAmount = Mathf.Clamp01(fillAmount - drainRate * Time.deltaTime);
         fill.fillAmount = fillAmount;
         if (nightmareVolume != null) {
-            // If fillAmount is 1 (full), nightmare weight is 0 (invisible).
-            // If fillAmount is 0 (empty), nightmare weight is 1 (fully visible).
             nightmareVolume.weight = 1f - fillAmount;
         }
 
