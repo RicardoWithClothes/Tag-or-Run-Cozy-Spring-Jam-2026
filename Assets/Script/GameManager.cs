@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -14,8 +15,14 @@ public class GameManager : MonoBehaviour
     private float timeSurvived = 0f;
     private int pillsTaken = 0;
     private bool isGameOver = false;
+
+    [Header("Sound Elements")]
+    public AudioSource mainTheme;
+
     void Start()
     {
+        //mainTheme = GetComponent<AudioSource>();
+
         Time.timeScale = 1f; // start time for reset
         isGameOver = false;
         if (gameOverUI != null) gameOverUI.SetActive(false);
@@ -42,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
         isGameOver = true;
 
+        Debug.Log("Game Over Triggered!");
         if (gameOverUI != null) {
             gameOverUI.SetActive(true);
         }
@@ -83,5 +91,11 @@ public class GameManager : MonoBehaviour
 
         if (highScoreText != null)
             highScoreText.text = $"High Score: {savedHighScore}";
+        //mainTheme.pitch = 1.15f;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        mainTheme.pitch = MathF.Sin(MathF.Sqrt(2 * FindObjectOfType<PillBar>().fillAmount)) + 0.2f;
     }
 }
