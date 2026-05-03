@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     public PlayerStatsSO stats; 
     public Transform orientation;
+    public AudioSource audioData;
 
     // Components
     [HideInInspector] public PlayerInputHandler input;
@@ -56,6 +60,15 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         currentState.Update();
         SpeedControl();
+        
+        if (rb.linearVelocity.magnitude > 0.5 && isGrounded)
+        {
+            audioData.volume = rb.linearVelocity.magnitude;
+            audioData.pitch = Mathf.Clamp(rb.linearVelocity.magnitude / 7, 1f, 1.35f) + (FindObjectOfType<PillBar>().fillAmount - 1);
+        }
+        else {
+            audioData.volume = 0;
+        }
     }
 
     private void FixedUpdate()
