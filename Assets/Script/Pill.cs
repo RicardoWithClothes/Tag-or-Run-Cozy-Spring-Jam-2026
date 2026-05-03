@@ -14,6 +14,7 @@ public class Pill : MonoBehaviour {
         PillBar pill = FindObjectOfType<PillBar>();
         if (pill != null && other.CompareTag("Player")) {
             pill.FillBar();
+            FindObjectOfType<GameManager>().AddPill();
             Destroy(gameObject);
         }
     }
