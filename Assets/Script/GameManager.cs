@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         }
 
         Time.timeScale = 0f; // stop time
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     // Update is called once per frame
     void Update()

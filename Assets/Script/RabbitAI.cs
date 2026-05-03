@@ -29,6 +29,7 @@ public class RabbitAI : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("GAME OVER: You were tagged!");
+            FindObjectOfType<GameManager>().TriggerGameOver();
         }
     }
 }
